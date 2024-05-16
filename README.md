@@ -44,7 +44,7 @@ O aplicativo requer uma conexão com o banco de dados SQLite localizado no camin
 ```python
 conn = sqlite3.connect(r"INSIRA O CAMINHO DO BANCO AQUI.")
 ```
-Atente-se para o nome do banco, para que não haja erros: BDCALL.db
+Atente-se para o nome do banco, para que não haja erros: `BDCALL.db`
 
 ## Observação
 
