@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard CLP</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='logo_empresa.png') }}" alt="Logo da Empresa" class="logo">
+        PAINEL - CONTROLE DE LAVAGEM DE PLACAS
+    </header>
+    <div class="main-content">
+        <form class="filter-form" method="POST" action="/">
+            <div>
+                <label for="date-filter">Data Única:</label>
+                <input type="date" id="date-filter" name="date-filter">
+            </div>
+            <div>
+                <label for="start-date">Data de início:</label>
+                <input type="date" id="start-date" name="start-date">
+            </div>
+            <div>
+                <label for="end-date">Data de fim:</label>
+                <input type="date" id="end-date" name="end-date">
+            </div>
+            <div>
+                <label for="turno">Turno:</label>
+                <select id="turno" name="turno">
+                    <option value="">Todos</option>
+                    {% for turno in turnos %}
+                    <option value="{{ turno }}">{{ turno }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="modelo">Modelo:</label>
+                <select id="modelo" name="modelo">
+                    <option value="">Todos</option>
+                    {% for modelo in modelos %}
+                    <option value="{{ modelo }}">{{ modelo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" name="action" value="single-date">Filtrar Data Única</button>
+            <button type="submit" name="action" value="date-range">Filtrar Intervalo</button>
+        </form>
+
+        <div>
+            <input type="checkbox" id="exclude_duplicates" name="exclude_duplicates" {{ 'checked' if exclude_duplicates
+                }}>
+            <label for="exclude_duplicates">Excluir Duplicados</label>
+        </div>
+
+        <div class="plot-container">
+            {{ graph_html|safe }}
+        </div>
+    </div>
+    <div id="clock"></div>
+    <footer>
+        <button id="sobreBtn">Sobre</button>
+        <p>CALLIDUS TI © - TODOS OS DIREITOS RESERVADOS</p>
+    </footer>
+
+    <div id="sobreModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sobre a Dashboard</h2>
+            <p>Esta dashboard foi desenvolvida por Marcos Gabriel Moraes Silva - Analista de T.I.</p>
+            <p>Seu objetivo é facilitar o monitoramento e a visualização dos processos de lavagem de placas.</p>
+            <p>O Sistema CLP - Controle de Lavagem de Placas é responsável por registrar e gerenciar o processo de lavagem de placas, inserindo o serial no sistema. </p>
+            <p>Para mais informações, entre em contato com o time de T.I CALLIDUS, estamos à disposição.</p>
+        </div>
+    </div>
+
+    <script>
+        // Script do relógio
+        function updateClock() {
+            const now = new Date();
+            const dateString = now.toLocaleDateString('pt-BR');
+            const timeString = now.toLocaleTimeString('pt-BR');
+            document.getElementById('clock').innerHTML = `${dateString} ${timeString}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Script do modal Sobre
+        var modal = document.getElementById("sobreModal");
+        var btn = document.getElementById("sobreBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
