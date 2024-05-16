@@ -4,6 +4,7 @@
 ## Descrição
 
 Este projeto é um complemento ao sistema CLP - Controle de Lavagem de Placas. Ele exibe um gráfico mostrando a quantidade de seriais que cada linha no ambiente industrial está recebendo, com a possibilidade de aplicar filtros por turno e modelo.
+![image](https://github.com/HyperTechDevelopment/Dashboard-CLP/assets/155833544/e2d33a66-c8e6-4a0d-a4c7-404b57db0db4)
 
 ## Instalação
 
