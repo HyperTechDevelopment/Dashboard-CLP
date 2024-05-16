@@ -1,0 +1,251 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #ffffff;
+    color: #118d01;
+    padding: 22px 0;
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    position: relative; /* Adicionado para posicionar a imagem */
+    width: 100%; /* Esta linha garante que o header preencha a tela inteira horizontalmente */
+    box-sizing: border-box; /* Esta linha garante que o padding seja incluído na largura total */
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 170px;
+}
+
+footer {
+    background-color: #017e03;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    margin-top: auto;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#clock {
+    font-size: 2rem; /* Tamanho da fonte do relógio */
+    text-align: center;
+    margin: 20px auto; /* Centraliza horizontalmente */
+    padding: 15px;
+    background: #f8be00; /* Cor de fundo */
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    display: block;
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    color: white;
+    font-weight: bold;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.filter-form {
+    margin-bottom: 20px;
+}
+
+.filter-form input[type="date"] {
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.filter-form button {
+    padding: 5px 15px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    border-radius: 15px;
+}
+
+.filter-form button:hover {
+    background-color: #006b17;
+}
+
+.plot-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo para o logo da empresa */
+.logo-empresa {
+    height: 50px;
+    margin-right: 20px;
+}
+
+/* Estilos responsivos */
+
+@media (max-width: 768px) {
+    header {
+        font-size: 18;
+    }
+
+    .logo {
+        left: 0.5rem;
+        height: 2rem;
+        width: auto;
+    }
+
+    .filter-form > div,
+    .filter-form input[type="date"],
+    .filter-form button {
+        flex-basis: auto;
+    }
+
+    .filter-form {
+        gap: 0.5rem;
+    }
+
+    .filter-form input[type="date"],
+    .filter-form button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 13px;
+        padding: 0.5rem 0;
+    }
+
+    .logo {
+        height: 20px;
+    }
+
+    .filter-form > div,
+    .filter-form input[type="date"],
+    .filter-form button {
+        flex-basis: 100%;
+    }
+
+    .filter-form {
+        gap: 0.2rem;
+    }
+
+    .filter-form input[type="date"],
+    .filter-form button {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+
+    #clock {
+        font-size: 1rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+/* Estilo do Botão Sobre */
+#sobreBtn {
+    background-color: #9c9c9c; /* Verde */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+#sobreBtn:hover {opacity: 1}
+
+/* Estilo do Modal */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed; /* Fixo na tela */
+    z-index: 1; /* Sobre outros itens */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgb(0,0,0); /* Cor de fundo */
+    background-color: rgba(0,0,0,0.4); /* Preto com opacidade */
+    -webkit-animation-name: fadeIn; /* Animação de entrada */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Conteúdo/Corpo do Modal */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.7s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+}
+
+/* Título do Modal */
+.modal-content h2 {
+    text-align: center;
+    font-size: 23px;
+    color: #333;
+}
+
+/* O botão de fechar (x) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animações */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
